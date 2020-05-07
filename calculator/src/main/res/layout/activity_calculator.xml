@@ -18,7 +18,7 @@
         android:textColor="@android:color/black"
         android:ems="10"
         android:hint="@string/insert_first_number_hint"
-        android:inputType="number" />
+        android:inputType="numberDecimal|numberSigned" />
 
     <EditText
         android:id="@+id/second_number_edittext"
@@ -31,7 +31,7 @@
         android:ems="10"
         android:textColor="@android:color/black"
         android:hint="@string/insert_second_number_hint"
-        android:inputType="number" />
+        android:inputType="numberDecimal|numberSigned" />
 
     <Button
         android:id="@+id/button_calculate"

@@ -1,12 +1,15 @@
 package com.nerallan.calculator.usecase
 
-class SumUseCase {
+import com.nerallan.calculator.R
+import com.nerallan.calculator.utils.IStringProvider
+
+class SumUseCase(private val stringsProvider: IStringProvider) {
 
     fun execute(firstNumber: Int, secondNumber: Int): Result {
         return if (firstNumber > 0 && secondNumber > 0) {
             Result.Success(firstNumber + secondNumber)
         } else {
-            Result.Failure("Both numbers must be greater than 0!!")
+            Result.Failure(stringsProvider.getString(R.string.both_number_must_be_positive))
         }
     }
 

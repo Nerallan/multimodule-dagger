@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.nerallan.calculator.R
+import com.nerallan.calculator.di.CalculatorModule
 import com.nerallan.calculator.di.DaggerCalculatorComponent
 import com.nerallan.calculator.usecase.SumUseCase
 import com.nerallan.calculator.usecase.SumUseCase.Result
@@ -28,8 +29,8 @@ class CalculatorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculator)
 
-        DaggerCalculatorComponent
-            .builder()
+        DaggerCalculatorComponent.builder()
+            .calculatorModule(CalculatorModule(application))
             .build()
             .inject(this)
 
