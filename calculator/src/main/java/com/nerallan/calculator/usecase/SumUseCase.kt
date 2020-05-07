@@ -1,7 +1,7 @@
 package com.nerallan.calculator.usecase
 
 import com.nerallan.calculator.R
-import com.nerallan.calculator.utils.IStringProvider
+import com.nerallan.core.utils.IStringProvider
 
 class SumUseCase(private val stringsProvider: IStringProvider) {
 

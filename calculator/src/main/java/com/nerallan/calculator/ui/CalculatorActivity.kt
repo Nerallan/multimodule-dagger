@@ -7,12 +7,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.nerallan.calculator.R
-import com.nerallan.calculator.di.CalculatorModule
 import com.nerallan.calculator.di.DaggerCalculatorComponent
 import com.nerallan.calculator.usecase.SumUseCase
 import com.nerallan.calculator.usecase.SumUseCase.Result
 import com.nerallan.calculator.usecase.SumUseCase.Result.Failure
 import com.nerallan.calculator.usecase.SumUseCase.Result.Success
+import com.nerallan.core.di.CoreModule
 import javax.inject.Inject
 
 class CalculatorActivity : AppCompatActivity() {
@@ -30,7 +30,7 @@ class CalculatorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_calculator)
 
         DaggerCalculatorComponent.builder()
-            .calculatorModule(CalculatorModule(application))
+            .coreModule(CoreModule(application))
             .build()
             .inject(this)
 

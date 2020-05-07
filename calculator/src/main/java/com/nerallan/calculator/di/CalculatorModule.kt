@@ -1,24 +1,13 @@
 package com.nerallan.calculator.di
 
-import android.app.Application
 import com.nerallan.calculator.usecase.SumUseCase
-import com.nerallan.calculator.utils.IStringProvider
-import com.nerallan.calculator.utils.StringsProvider
+import com.nerallan.core.utils.IStringProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class CalculatorModule(private val application: Application) {
-
-    @Provides
-    @Singleton
-    fun application(): Application = application
-
-
-    @Provides
-    @Singleton
-    fun stringsProvider(application: Application): IStringProvider = StringsProvider(application)
+class CalculatorModule {
 
     @Provides
     @Singleton
