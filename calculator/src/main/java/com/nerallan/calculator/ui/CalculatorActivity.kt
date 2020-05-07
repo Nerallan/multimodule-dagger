@@ -1,15 +1,20 @@
-package com.nerallan.calculator
+package com.nerallan.calculator.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.nerallan.calculator.R
+import com.nerallan.calculator.di.DaggerCalculatorComponent
 import com.nerallan.calculator.usecase.SumUseCase
+import javax.inject.Inject
 
 class CalculatorActivity : AppCompatActivity() {
+    data class NumPair(val firstNum: Int, val secondNum: Int)
 
-    private lateinit var sumUseCase: SumUseCase
+    @Inject
+    lateinit var sumUseCase: SumUseCase
 
     private lateinit var firstNumberEditText: EditText
     private lateinit var secondNumberEditText: EditText
@@ -19,17 +24,29 @@ class CalculatorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculator)
 
-        sumUseCase = SumUseCase()
+        DaggerCalculatorComponent
+            .builder()
+            .build()
+            .inject(this)
 
         bindViews()
         bindListeners()
     }
 
-    private fun calculateSum() {
+    private fun getInputNums(): NumPair{
         val firstNumber = firstNumberEditText.text.toString().toInt()
         val secondNumber = secondNumberEditText.text.toString().toInt()
+        return NumPair(firstNumber, secondNumber)
+    }
+
+    private fun calculateSum(numPair: NumPair): String {
+        val (firstNumber, secondNumber) = numPair
         val result = sumUseCase.execute(firstNumber, secondNumber)
-        resultTextView.text = result.toString()
+        return result.toString()
+    }
+
+    private fun showResult(result: String) {
+        resultTextView.text = result
     }
 
     private fun bindViews() {
@@ -40,7 +57,8 @@ class CalculatorActivity : AppCompatActivity() {
 
     private fun bindListeners() {
         findViewById<Button>(R.id.button_calculate).setOnClickListener {
-            calculateSum()
+            val result = calculateSum(getInputNums())
+            showResult(result)
         }
     }
 

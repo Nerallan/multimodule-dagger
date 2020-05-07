@@ -6,7 +6,7 @@
         <activity
             android:theme="@style/Theme.Calculator"
             android:label="Calculator"
-            android:name="CalculatorActivity"
+            android:name=".ui.CalculatorActivity"
             android:screenOrientation="portrait" />
     </application>
 
