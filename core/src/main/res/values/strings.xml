@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">core</string>
+    <string name="subscription_free_title">Free App!</string>
 </resources>
