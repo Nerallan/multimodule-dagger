@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var appSubscription: AppSubscription
 
-    lateinit var subscriptionTextView: TextView
+    private lateinit var subscriptionTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
