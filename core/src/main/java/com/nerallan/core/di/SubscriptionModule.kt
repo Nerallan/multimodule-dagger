@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [CoreModule::class])
 class SubscriptionModule {
 
     @Provides
