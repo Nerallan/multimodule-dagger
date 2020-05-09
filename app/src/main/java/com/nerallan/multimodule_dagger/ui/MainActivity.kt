@@ -6,10 +6,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.nerallan.calculator.ui.CalculatorActivity
-import com.nerallan.core.di.CoreModule
 import com.nerallan.core.modes.AppSubscription
 import com.nerallan.multimodule_dagger.R
-import com.nerallan.multimodule_dagger.di.DaggerApplicationComponent
+import com.nerallan.multimodule_dagger.di.provider.ApplicationComponentProvider
 import javax.inject.Inject
 
 
@@ -18,15 +17,14 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var appSubscription: AppSubscription
 
-    lateinit var subscriptionTextView: TextView
+    private lateinit var subscriptionTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DaggerApplicationComponent.builder()
-            .coreModule(CoreModule(application))
-            .build()
+        (application as ApplicationComponentProvider)
+            .getApplicationComponent()
             .inject(this)
 
         bindViews()
